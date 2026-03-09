@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import { MessageSquare, Cpu, CheckCircle2, Lightbulb } from "lucide-react";
+import { MessageSquare, Cpu, Lightbulb, CheckCircle2 } from "lucide-react";
+import marquee1 from "@/assets/marquee-1.jpg";
+import marquee4 from "@/assets/marquee-4.jpg";
+import marquee5 from "@/assets/marquee-5.jpg";
 
 const steps = [
   {
@@ -26,44 +29,84 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="relative py-20 md:py-32">
-      <div className="container mx-auto px-4">
+    <section id="how-it-works" className="relative py-24 md:py-40">
+      {/* Side lines */}
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
+      <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
+
+      <div className="container mx-auto px-6 md:px-12">
+        {/* Header with images */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="mb-20"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            How It <span className="text-gradient">Works</span>
-          </h2>
+          <p className="text-xs tracking-[0.3em] text-muted-foreground font-body uppercase mb-4">
+            The Process
+          </p>
+          <div className="flex flex-col lg:flex-row items-start gap-8">
+            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-wider text-foreground uppercase leading-[0.9] flex-shrink-0">
+              How It<br />
+              <span className="text-primary">Works</span>
+            </h2>
+            {/* Image cluster */}
+            <div className="hidden lg:flex items-end gap-3 flex-1">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="w-40 h-52 rounded-sm overflow-hidden"
+              >
+                <img src={marquee1} alt="" className="w-full h-full object-cover" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="w-32 h-40 rounded-sm overflow-hidden"
+              >
+                <img src={marquee4} alt="" className="w-full h-full object-cover" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.7 }}
+                className="w-36 h-48 rounded-sm overflow-hidden"
+              >
+                <img src={marquee5} alt="" className="w-full h-full object-cover" />
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto relative">
-          {/* Vertical line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
-
+        {/* Steps in horizontal layout */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className={`relative flex items-start gap-6 mb-12 pl-16 md:pl-0 ${
-                i % 2 === 0 ? "md:pr-[55%]" : "md:pl-[55%]"
-              }`}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="bg-background p-8 group hover:bg-card transition-colors duration-500 relative"
             >
-              {/* Dot on line */}
-              <div className="absolute left-4 md:left-1/2 top-1 h-5 w-5 rounded-full bg-primary/20 border-2 border-primary md:-translate-x-1/2 flex items-center justify-center">
-                <div className="h-2 w-2 rounded-full bg-primary" />
+              <div className="flex items-center justify-between mb-8">
+                <span className="font-display text-4xl text-primary/20 group-hover:text-primary/40 transition-colors">
+                  0{i + 1}
+                </span>
+                <step.icon className="h-5 w-5 text-primary/60 group-hover:text-primary transition-colors duration-500" />
               </div>
-
-              <div className="glass-card rounded-xl p-5 flex-1">
-                <step.icon className="h-5 w-5 text-primary mb-3" />
-                <h3 className="font-display font-semibold text-foreground mb-1">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
-              </div>
+              <h3 className="font-display text-lg tracking-wider text-foreground uppercase mb-3">
+                {step.title}
+              </h3>
+              <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>
