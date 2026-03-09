@@ -297,10 +297,14 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     const canvas = canvasRef.current
     if (!canvas) return
 
-    canvas.width = 1000
-    canvas.height = 500
+    const resize = () => {
+      canvas.width = window.innerWidth * 1.5
+      canvas.height = window.innerHeight * 1.5
+      nextWord(words[wordIndexRef.current], canvas)
+    }
 
-    nextWord(words[0], canvas)
+    resize()
+    window.addEventListener("resize", resize)
     animate()
 
     const handleMouseDown = (e: MouseEvent) => {
