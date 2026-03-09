@@ -103,17 +103,10 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
           className="flex-1 relative hidden md:block"
           style={{ height: '500px' }}
         >
-          {/* UI Layer label */}
-          <div className="absolute -top-2 right-0 z-40">
-            <span className="font-display text-lg tracking-[0.2em] text-muted-foreground/60 uppercase">
-              UI Layer
-            </span>
-          </div>
-
           <CardSwap
             cardDistance={50}
             verticalDistance={60}
-            delay={3000}
+            delay={2000}
             pauseOnHover={false}
             width={400}
             height={280}
