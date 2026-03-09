@@ -344,10 +344,10 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
   }, [])
 
   return (
-    <div className="relative w-full">
+    <div className="w-full h-full">
       <canvas
         ref={canvasRef}
-        className="w-full h-auto rounded-xl"
+        className="w-full h-full"
         style={{ background: "transparent" }}
       />
     </div>
