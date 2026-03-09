@@ -36,11 +36,10 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-5xl md:text-7xl font-bold leading-tight tracking-tight mb-6"
           >
-            Guarding{" "}
-            <span className="text-gradient">Conversations</span>
+            AI-Powered{" "}
+            <span className="text-gradient">Real-Time</span>
             <br />
-            Empowering{" "}
-            <span className="text-gradient">Learning</span>
+            Chat <span className="text-gradient">Moderator</span>
           </motion.h1>
 
           <motion.p
