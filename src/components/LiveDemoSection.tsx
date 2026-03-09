@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Shield, AlertTriangle, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface ModerationResult {
   status: "allowed" | "blocked" | "suggested";
@@ -52,7 +51,6 @@ const LiveDemoSection = () => {
     setResult(null);
 
     setTimeout(() => {
-      // Find closest demo message or default
       const match = Object.entries(demoMessages).find(([key]) =>
         input.toLowerCase().includes(key.toLowerCase().split(" ")[0])
       );
@@ -71,24 +69,33 @@ const LiveDemoSection = () => {
   };
 
   const statusConfig = {
-    allowed: { icon: CheckCircle2, label: "Allowed", color: "text-emerald-400" },
-    blocked: { icon: Shield, label: "Blocked", color: "text-destructive" },
-    suggested: { icon: AlertTriangle, label: "Suggestion", color: "text-amber-400" },
+    allowed: { icon: CheckCircle2, label: "ALLOWED", color: "text-primary" },
+    blocked: { icon: Shield, label: "BLOCKED", color: "text-destructive" },
+    suggested: { icon: AlertTriangle, label: "SUGGESTION", color: "text-yellow-500" },
   };
 
   return (
-    <section className="relative py-20 md:py-32">
-      <div className="container mx-auto px-4">
+    <section className="relative py-24 md:py-40">
+      {/* Side lines */}
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
+      <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
+
+      <div className="container mx-auto px-6 md:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          transition={{ duration: 0.8 }}
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Try It <span className="text-gradient">Live</span>
+          <p className="text-xs tracking-[0.3em] text-muted-foreground font-body uppercase mb-4">
+            Live Testing
+          </p>
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-wider text-foreground uppercase leading-[0.9]">
+            Try It<br />
+            <span className="text-primary">Live</span>
           </h2>
-          <p className="text-muted-foreground max-w-md mx-auto text-sm">
+          <p className="text-sm text-muted-foreground font-body mt-6 max-w-lg">
             Type a message below to see how SentinelAI moderates it in a Java learning group.
           </p>
         </motion.div>
@@ -97,37 +104,40 @@ const LiveDemoSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-xl mx-auto"
+          className="max-w-2xl"
         >
-          <div className="glass-card rounded-xl p-6 glow-border">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="border border-border bg-card p-8">
+            <div className="flex items-center gap-2 mb-6">
               <Shield className="h-4 w-4 text-primary" />
-              <span className="text-xs text-muted-foreground font-display">Group: Full Stack Java Development</span>
+              <span className="text-xs tracking-[0.15em] text-muted-foreground font-body uppercase">
+                Group: Full Stack Java Development
+              </span>
             </div>
 
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-3 mb-6">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                 placeholder="Try: Follow me on Instagram for Java tips"
-                className="flex-1 bg-secondary/50 border border-border rounded-lg px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
+                className="flex-1 bg-background border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors font-body"
               />
-              <Button variant="hero" size="icon" onClick={handleSubmit} disabled={loading}>
+              <button
+                onClick={handleSubmit}
+                disabled={loading}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-3 transition-colors disabled:opacity-50"
+              >
                 <Send className="h-4 w-4" />
-              </Button>
+              </button>
             </div>
 
             {/* Quick demos */}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-6">
               {Object.keys(demoMessages).map((msg) => (
                 <button
                   key={msg}
-                  onClick={() => {
-                    setInput(msg);
-                    setResult(null);
-                  }}
-                  className="text-xs glass-card rounded-full px-3 py-1 text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => { setInput(msg); setResult(null); }}
+                  className="text-xs border border-border px-3 py-1.5 text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors font-body"
                 >
                   {msg.length > 30 ? msg.slice(0, 30) + "…" : msg}
                 </button>
@@ -141,7 +151,7 @@ const LiveDemoSection = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="flex items-center gap-2 text-sm text-muted-foreground"
+                  className="flex items-center gap-2 text-sm text-muted-foreground font-body"
                 >
                   <div className="h-4 w-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
                   Analyzing message…
@@ -153,7 +163,7 @@ const LiveDemoSection = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="space-y-3"
+                  className="space-y-4"
                 >
                   <div className="flex items-center gap-2">
                     {(() => {
@@ -161,28 +171,28 @@ const LiveDemoSection = () => {
                       return (
                         <>
                           <cfg.icon className={`h-5 w-5 ${cfg.color}`} />
-                          <span className={`font-display font-semibold text-sm ${cfg.color}`}>{cfg.label}</span>
+                          <span className={`font-display text-lg tracking-wider ${cfg.color}`}>{cfg.label}</span>
                         </>
                       );
                     })()}
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-3 gap-px bg-border">
                     {[
-                      { label: "Toxicity", value: result.toxicity },
-                      { label: "Topic Match", value: result.topicMatch },
-                      { label: "Spam", value: result.spam },
+                      { label: "TOXICITY", value: result.toxicity },
+                      { label: "TOPIC MATCH", value: result.topicMatch },
+                      { label: "SPAM", value: result.spam },
                     ].map((m) => (
-                      <div key={m.label} className="text-center">
-                        <p className="text-lg font-display font-bold text-foreground">{m.value}%</p>
-                        <p className="text-xs text-muted-foreground">{m.label}</p>
+                      <div key={m.label} className="bg-background text-center py-4">
+                        <p className="font-display text-2xl text-foreground">{m.value}%</p>
+                        <p className="text-xs text-muted-foreground tracking-[0.1em] font-body">{m.label}</p>
                       </div>
                     ))}
                   </div>
 
                   {result.suggestion && (
-                    <div className="bg-secondary/50 rounded-lg p-3 border border-border">
-                      <p className="text-sm text-muted-foreground">
+                    <div className="border-l-2 border-primary/50 pl-4 py-2">
+                      <p className="text-sm text-muted-foreground font-body">
                         <span className="text-primary font-medium">AI says: </span>
                         {result.suggestion}
                       </p>
