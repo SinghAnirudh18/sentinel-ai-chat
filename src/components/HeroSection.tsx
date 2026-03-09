@@ -28,7 +28,7 @@ const featureCards = [
   },
   {
     icon: Target,
-    title: "Real-Time Engine",
+    title: "Instant Engine",
     subtitle: "Sub-300ms Latency",
     items: ["Pre-send checking", "Instant moderation", "Zero-delay responses"],
   },
@@ -103,17 +103,10 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
           className="flex-1 relative hidden md:block"
           style={{ height: '500px' }}
         >
-          {/* UI Layer label */}
-          <div className="absolute -top-2 right-0 z-40">
-            <span className="font-display text-lg tracking-[0.2em] text-muted-foreground/60 uppercase">
-              UI Layer
-            </span>
-          </div>
-
           <CardSwap
             cardDistance={50}
             verticalDistance={60}
-            delay={3000}
+            delay={2000}
             pauseOnHover={false}
             width={400}
             height={280}
@@ -171,7 +164,7 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 2.2 }}
-        className="relative z-10 w-full mt-20 md:mt-32 pb-40"
+        className="relative z-10 w-full mt-32 md:mt-48 pb-40"
       >
         <div className="container mx-auto flex items-center justify-between px-8 md:px-20 lg:px-32">
           {/* Instagram */}
