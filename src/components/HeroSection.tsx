@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import CardSwap, { Card } from "@/components/ui/CardSwap";
 import { Brain, MessageSquareWarning, Shield, Target, Sliders } from "lucide-react";
