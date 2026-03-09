@@ -113,7 +113,7 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
           <CardSwap
             cardDistance={50}
             verticalDistance={60}
-            delay={5000}
+            delay={3000}
             pauseOnHover={false}
             width={400}
             height={280}
