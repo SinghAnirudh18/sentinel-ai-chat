@@ -1,15 +1,44 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import CardSwap, { Card } from "@/components/ui/CardSwap";
-import marquee1 from "@/assets/marquee-1.jpg";
-import marquee2 from "@/assets/marquee-2.jpg";
-import marquee3 from "@/assets/marquee-3.jpg";
-import marquee4 from "@/assets/marquee-4.jpg";
-import marquee5 from "@/assets/marquee-5.jpg";
+import { Brain, MessageSquareWarning, Shield, Target, Sliders } from "lucide-react";
 
 interface HeroSectionProps {
   onAuthOpen: (mode: "signup") => void;
 }
+
+const featureCards = [
+  {
+    icon: Brain,
+    title: "Context-Aware AI",
+    subtitle: "Smart Detection",
+    items: ["Embedding-based topic analysis", "Cosine similarity matching", "Real-time context understanding"],
+  },
+  {
+    icon: MessageSquareWarning,
+    title: "AI Suggestions",
+    subtitle: "Guided Moderation",
+    items: ["Smart message rewriting", "Topic-relevant guidance", "Non-blocking corrections"],
+  },
+  {
+    icon: Shield,
+    title: "Multi-Layer Shield",
+    subtitle: "Defense System",
+    items: ["Toxicity detection", "Spam filtering", "Off-topic prevention"],
+  },
+  {
+    icon: Target,
+    title: "Real-Time Engine",
+    subtitle: "Sub-300ms Latency",
+    items: ["Pre-send checking", "Instant moderation", "Zero-delay responses"],
+  },
+  {
+    icon: Sliders,
+    title: "Adaptive Modes",
+    subtitle: "Admin Controls",
+    items: ["Strict / Balanced / Relaxed", "Custom sensitivity levels", "Per-channel configuration"],
+  },
+];
 
 const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -66,7 +95,7 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
           </motion.div>
         </motion.div>
 
-        {/* Right: Card Swap */}
+        {/* Right: Card Swap with UI Layer label */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -74,29 +103,65 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
           className="flex-1 relative hidden md:block"
           style={{ height: '500px' }}
         >
+          {/* UI Layer label */}
+          <div className="absolute -top-2 right-0 z-40">
+            <span className="font-display text-lg tracking-[0.2em] text-muted-foreground/60 uppercase">
+              UI Layer
+            </span>
+          </div>
+
           <CardSwap
-            cardDistance={60}
-            verticalDistance={70}
+            cardDistance={50}
+            verticalDistance={60}
             delay={5000}
             pauseOnHover={false}
-            width={340}
-            height={420}
+            width={400}
+            height={280}
           >
-            <Card>
-              <img src={marquee1} alt="" className="w-full h-full object-cover rounded-xl" />
-            </Card>
-            <Card>
-              <img src={marquee2} alt="" className="w-full h-full object-cover rounded-xl" />
-            </Card>
-            <Card>
-              <img src={marquee3} alt="" className="w-full h-full object-cover rounded-xl" />
-            </Card>
-            <Card>
-              <img src={marquee4} alt="" className="w-full h-full object-cover rounded-xl" />
-            </Card>
-            <Card>
-              <img src={marquee5} alt="" className="w-full h-full object-cover rounded-xl" />
-            </Card>
+            {featureCards.map((feature, idx) => (
+              <Card key={idx}>
+                <div className="w-full h-full rounded-xl bg-card border border-border p-5 flex flex-col cursor-pointer select-none">
+                  {/* Mock browser bar */}
+                  <div className="flex items-center gap-1.5 mb-4">
+                    <div className="w-2.5 h-2.5 rounded-full bg-destructive/40" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/20" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/20" />
+                    <div className="ml-3 flex-1 h-5 rounded bg-muted/60" />
+                  </div>
+
+                  {/* Feature content */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <feature.icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-sm tracking-wider text-foreground uppercase">
+                        {feature.title}
+                      </h3>
+                      <p className="text-[10px] text-muted-foreground font-body tracking-wider uppercase">
+                        {feature.subtitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="w-full h-px bg-border mb-3" />
+
+                  {/* Feature items */}
+                  <div className="flex-1 space-y-2">
+                    {feature.items.map((item, j) => (
+                      <div key={j} className="flex items-center gap-2">
+                        <div className="w-1 h-1 rounded-full bg-primary/60" />
+                        <span className="text-xs text-muted-foreground font-body">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Bottom accent bar */}
+                  <div className="mt-3 w-full h-1 rounded-full bg-gradient-to-r from-primary/40 to-primary/10" />
+                </div>
+              </Card>
+            ))}
           </CardSwap>
         </motion.div>
       </div>
