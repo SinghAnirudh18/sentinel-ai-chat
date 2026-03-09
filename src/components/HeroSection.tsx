@@ -164,7 +164,7 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 2.2 }}
-        className="relative z-10 w-full mt-20 md:mt-32 pb-40"
+        className="relative z-10 w-full mt-32 md:mt-48 pb-40"
       >
         <div className="container mx-auto flex items-center justify-between px-8 md:px-20 lg:px-32">
           {/* Instagram */}
