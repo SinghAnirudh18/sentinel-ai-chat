@@ -236,10 +236,8 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
       {/* Floating App Icons — scroll-driven spread from cluster */}
       <div ref={iconsRef} className="relative z-10 w-full mt-40 md:mt-56 pb-48">
         <motion.div
-          style={{ opacity: iconGroupOpacity }}
-          className="container mx-auto relative flex items-center justify-center"
-          // height to contain absolute positioned icons
           style={{ opacity: iconGroupOpacity, height: "10rem" }}
+          className="container mx-auto relative flex items-center justify-center"
         >
           {appIcons.map((app, i) => (
             <ScrollDrivenIcon key={app.name} app={app} index={i} spread={spread} />
