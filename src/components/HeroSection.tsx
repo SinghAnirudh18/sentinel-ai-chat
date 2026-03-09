@@ -268,16 +268,15 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
 interface ScrollDrivenIconProps {
   app: typeof appIcons[0];
   index: number;
-  spread: ReturnType<typeof useTransform>;
+  spread: MotionValue<number>;
 }
 
 const ScrollDrivenIcon = ({ app, index, spread }: ScrollDrivenIconProps) => {
   const targetX = parseFloat(spreadPositions[index].x);
   const targetY = parseFloat(spreadPositions[index].y);
 
-  // Map spread 0→1 to position
-  const x = useTransform(spread, [0, 1], ["0%", `${targetX * 1.2}vw`]);
-  const y = useTransform(spread, [0, 1], ["0%", `${targetY * 0.5}vh`]);
+  const x = useTransform(spread, [0, 1], [0, targetX * 12]);
+  const y = useTransform(spread, [0, 1], [0, targetY * 5]);
   const iconScale = useTransform(spread, [0, 0.5, 1], [0.6, 0.9, 1]);
   const rotate = useTransform(spread, [0, 1], [0, index % 2 === 0 ? 3 : -3]);
 
