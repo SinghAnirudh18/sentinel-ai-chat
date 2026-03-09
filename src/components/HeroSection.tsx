@@ -9,15 +9,17 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Grid background */}
-      <div className="absolute inset-0 grid-bg opacity-40" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Particle text as full background */}
+      <div className="absolute inset-0 z-0">
+        <ParticleTextEffect words={["SentinelAI", "Moderate", "Educate", "Protect", "Real-Time"]} />
+      </div>
 
-      {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-accent/5 blur-[120px] animate-pulse-glow" />
+      {/* Overlay gradient for readability */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/20 to-background" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="container mx-auto px-4 relative z-10 pt-16">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,22 +66,12 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
             </Button>
           </motion.div>
 
-          {/* Particle Text Effect */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="mt-12 max-w-3xl mx-auto"
-          >
-            <ParticleTextEffect words={["SentinelAI", "Moderate", "Educate", "Protect", "Real-Time"]} />
-          </motion.div>
-
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9 }}
-            className="flex items-center justify-center gap-8 md:gap-16 mt-8"
+            className="flex items-center justify-center gap-8 md:gap-16 mt-16"
           >
             {[
               { icon: Shield, label: "Messages Moderated", value: "2M+" },
