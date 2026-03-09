@@ -10,81 +10,13 @@ interface HeroSectionProps {
 const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Particle text as full background */}
+      {/* Particle background only */}
       <div className="absolute inset-0 z-0">
         <ParticleTextEffect words={["SentinelAI", "Moderate", "Educate", "Protect", "Real-Time"]} />
       </div>
 
-      {/* Overlay gradient for readability */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/20 to-background" />
-
-      <div className="container mx-auto px-4 relative z-10 pt-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-1.5 mb-8"
-          >
-            <span className="h-2 w-2 rounded-full bg-accent animate-pulse-glow" />
-            <span className="text-xs text-muted-foreground font-medium">AI-Powered Real-Time Moderation</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-5xl md:text-7xl font-bold leading-tight tracking-tight mb-6"
-          >
-            AI-Powered{" "}
-            <span className="text-gradient">Real-Time</span>
-            <br />
-            Chat <span className="text-gradient">Moderator</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-10"
-          >
-            SentinelAI doesn't just block messages — it educates users, detects context, and keeps communities focused on learning.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Button variant="hero" size="lg" onClick={() => onAuthOpen("signup")}>
-              Start Free <ArrowRight className="ml-1 h-4 w-4" />
-            </Button>
-            <Button variant="hero-outline" size="lg" asChild>
-              <a href="#demo">Watch Demo</a>
-            </Button>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
-            className="flex items-center justify-center gap-8 md:gap-16 mt-16"
-          >
-            {[
-              { icon: Shield, label: "Messages Moderated", value: "2M+" },
-              { icon: Zap, label: "Avg Latency", value: "<200ms" },
-              { label: "Accuracy", value: "97.2%" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl md:text-3xl font-display font-bold text-foreground">{stat.value}</p>
-                <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
+      {/* Subtle bottom fade into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
