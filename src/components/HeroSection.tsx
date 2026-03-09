@@ -28,7 +28,7 @@ const featureCards = [
   },
   {
     icon: Target,
-    title: "Real-Time Engine",
+    title: "Instant Engine",
     subtitle: "Sub-300ms Latency",
     items: ["Pre-send checking", "Instant moderation", "Zero-delay responses"],
   },
