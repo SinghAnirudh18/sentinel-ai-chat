@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Brain, MessageSquareWarning, Shield, Target, Sliders, BarChart3 } from "lucide-react";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 const features = [
   {
@@ -60,13 +61,23 @@ const FeaturesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card rounded-xl p-6 group hover:glow-border transition-all duration-500"
+              className="relative group rounded-xl"
             >
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <feature.icon className="h-5 w-5 text-primary" />
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                borderWidth={2}
+              />
+              <div className="relative glass-card rounded-xl p-6 h-full">
+                <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                  <feature.icon className="h-5 w-5 text-accent" />
+                </div>
+                <h3 className="font-display font-semibold text-foreground mb-2">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
-              <h3 className="font-display font-semibold text-foreground mb-2">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
         </div>

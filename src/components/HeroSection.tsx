@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, Shield, Zap } from "lucide-react";
+import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 
 interface HeroSectionProps {
   onAuthOpen: (mode: "signup") => void;
@@ -13,17 +14,17 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
       <div className="absolute inset-0 grid-bg opacity-40" />
 
       {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-[120px] animate-pulse-glow" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-accent/5 blur-[120px] animate-pulse-glow" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-1.5 mb-8"
           >
-            <span className="h-2 w-2 rounded-full bg-primary animate-pulse-glow" />
+            <span className="h-2 w-2 rounded-full bg-accent animate-pulse-glow" />
             <span className="text-xs text-muted-foreground font-medium">AI-Powered Real-Time Moderation</span>
           </motion.div>
 
@@ -63,12 +64,22 @@ const HeroSection = ({ onAuthOpen }: HeroSectionProps) => {
             </Button>
           </motion.div>
 
+          {/* Particle Text Effect */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="mt-12 max-w-3xl mx-auto"
+          >
+            <ParticleTextEffect words={["SentinelAI", "Moderate", "Educate", "Protect", "Real-Time"]} />
+          </motion.div>
+
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9 }}
-            className="flex items-center justify-center gap-8 md:gap-16 mt-16"
+            className="flex items-center justify-center gap-8 md:gap-16 mt-8"
           >
             {[
               { icon: Shield, label: "Messages Moderated", value: "2M+" },
