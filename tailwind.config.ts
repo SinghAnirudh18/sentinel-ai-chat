@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Segoe UI", "Helvetica Neue", "Helvetica", "Lucida Grande", "Arial", "sans-serif"],
-        body: ["Segoe UI", "Helvetica Neue", "Helvetica", "Lucida Grande", "Arial", "sans-serif"],
+        display: ["Bebas Neue", "Impact", "Arial Black", "sans-serif"],
+        body: ["Inter", "Segoe UI", "Helvetica Neue", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -88,13 +88,18 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 6s ease-in-out infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        marquee: "marquee 30s linear infinite",
+        marquee: "marquee 25s linear infinite",
+        "marquee-reverse": "marquee-reverse 25s linear infinite",
       },
     },
   },
