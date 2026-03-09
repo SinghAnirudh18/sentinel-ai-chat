@@ -343,6 +343,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       canvas.removeEventListener("mouseup", handleMouseUp)
       canvas.removeEventListener("mousemove", handleMouseMove)
       canvas.removeEventListener("contextmenu", handleContextMenu)
+      window.removeEventListener("resize", resize)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
